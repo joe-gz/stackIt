@@ -30,7 +30,9 @@ class App extends Component {
       <div className='App'>
         <SearchHeaders selectedSearch={this.state.selectedSearch} setSearchOption={this.setSearchOption} />
         <Search visible={this.state.response.length === 0} selectedSearch={this.state.selectedSearch} setResponseData={this.setResponseData}/>
-        <QuestionResponse visible={this.state.response.length > 0} data={this.state.response} />
+        {this.state.response.length > 0 ?
+          <QuestionResponse visible={this.state.response.length > 0} data={this.state.response} /> : null
+        }
       </div>
     );
   }
