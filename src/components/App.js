@@ -22,14 +22,19 @@ class App extends Component {
   }
 
   setResponseData =  (response) => {
-    this.setState({response: response});
+    this.setState({
+      response: response,
+      selectedSearch: ''
+    });
   }
 
   render() {
     return (
       <div className='App'>
         <SearchHeaders selectedSearch={this.state.selectedSearch} setSearchOption={this.setSearchOption} />
-        <Search visible={this.state.response.length === 0} selectedSearch={this.state.selectedSearch} setResponseData={this.setResponseData}/>
+        {this.state.response.length === 0 ?
+          <Search visible={this.state.response.length === 0} selectedSearch={this.state.selectedSearch} setResponseData={this.setResponseData}/> : null
+        }
         {this.state.response.length > 0 ?
           <QuestionResponse visible={this.state.response.length > 0} data={this.state.response} /> : null
         }

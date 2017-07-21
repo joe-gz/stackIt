@@ -10,17 +10,27 @@ import {
 
 class QuestionResponse extends Component {
 
+  createTableRows = (row) => {
+    return (
+      <TableRow>
+        <TableRowColumn><a href={row.link} target='_blank'>{row.title}</a></TableRowColumn>
+        <TableRowColumn>{row.answer_count}</TableRowColumn>
+        <TableRowColumn>here, are, some, tags</TableRowColumn>
+      </TableRow>
+    );
+  }
+
   render() {
 
     console.log(this);
+    const tableRows = this.props.data.map(this.createTableRows);
+    const height = window.innerHeight - (8 * 16);
 
     return (
       <div className='question-answer-wrap'>
         <Table
           fixedHeader={true}
-          selectable={false}
-          multiSelectable={false}
-          wrapperStyle='normal'
+          height={height}
         >
           <TableHeader
             displaySelectAll={false}
@@ -36,11 +46,7 @@ class QuestionResponse extends Component {
           <TableBody
             displayRowCheckbox={false}
           >
-            <TableRow>
-              <TableRowColumn><a href={this.props.data[0].link}>{this.props.data[0].title}</a></TableRowColumn>
-              <TableRowColumn>{this.props.data[0].answer_count}</TableRowColumn>
-              <TableRowColumn>here, are, some, tags</TableRowColumn>
-            </TableRow>
+            {tableRows}
           </TableBody>
         </Table>
       </div>
