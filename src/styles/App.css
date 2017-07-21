@@ -43,8 +43,8 @@ body {
   background-color: #F7F7F7;
   border: 1px solid #e6e6e6;
   border-left: none;
-  height: 60px;
-  font-size: 14px;
+  height: 4em;
+  font-size: 1em;
   cursor: pointer; }
 
 .selected-search {
@@ -98,3 +98,23 @@ body {
 
 .search-submit-wrap {
   display: inline-block; }
+
+@media only screen and (max-width: 768px) {
+  .search-header-container {
+    width: 100%;
+    position: absolute;
+    bottom: 0; }
+  .header-text {
+    display: none; }
+  .search-tab {
+    background-size: 3em;
+    background-repeat: no-repeat;
+    background-position: center; }
+  .search-questions {
+    background-image: url(../images/question.svg); }
+  .search-tag-input {
+    background-image: url(../images/tags.svg); }
+  .search-users {
+    background-image: url(../images/users.svg); }
+  .question-search-container {
+    display: block; } }

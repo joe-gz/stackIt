@@ -16,7 +16,9 @@ class Search extends Component {
   }
 
   createHeaders = (header) => {
-    return <div id={header.id} onClick={this.selectOption} className={`search-tab ${this.state.selectedSearch === header.id ? 'selected-search' : ''}`} key={header.id}>{header.text}</div>
+    return <div id={header.id} onClick={this.selectOption} className={`search-tab ${header.className} ${this.props.selectedSearch === header.id ? 'selected-search' : ''}`} key={header.id}>
+      <div className='header-text'>{header.text}</div>
+    </div>
   }
 
   selectOption = (evt) => {
@@ -37,6 +39,7 @@ class Search extends Component {
         results: 'done',
         isLoading: false
       });
+      this.props.setResponseData(res.data.items);
     }).catch(function (error) {
       console.log(error);
     });
@@ -66,15 +69,10 @@ class Search extends Component {
 
   render() {
 
-    const searchHeaders = searchOptions.map(this.createHeaders);
-
     return (
       <div className='Search'>
-        <div className='search-header-container'>
-          {searchHeaders}
-        </div>
-        <QuestionSearch visible={this.state.selectedSearch === 'searchQuestions'} searchQuestions={this.searchQuestions} isLoading={this.state.isLoading} changeLoading={this.changeLoading} />
-        <TagSearch visible={this.state.selectedSearch === 'searchQuestionsTag'} searchTags={this.searchTags} isLoading={this.state.isLoading} changeLoading={this.changeLoading}/>
+        <QuestionSearch visible={this.props.selectedSearch === 'searchQuestions'} searchQuestions={this.searchQuestions} isLoading={this.state.isLoading} changeLoading={this.changeLoading} />
+        <TagSearch visible={this.props.selectedSearch === 'searchQuestionsTag'} searchTags={this.searchTags} isLoading={this.state.isLoading} changeLoading={this.changeLoading}/>
       </div>
     );
   }

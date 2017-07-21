@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import TextField from 'material-ui/TextField';
 
 class TagInput extends Component {
 
@@ -6,9 +7,11 @@ class TagInput extends Component {
 
     return (
       <div>
-        <input className='search-form-input' type='text' placeholder='Add tag' value={this.props.value} onChange={(evt) => {
-          this.props.handleInputChange(evt, this.props.indexValue)
-        }} onKeyPress={this.props.handleKeyPress} />
+        <div className='question-input-field-wrap'>
+          <TextField hintText='Question' floatingLabelText='Add tag' value={this.props.value} onChange={(evt) => {
+            this.props.handleInputChange(evt, this.props.indexValue)
+          }} onKeyPress={this.props.handleKeyPress}/>
+        </div>
       </div>
     );
   }

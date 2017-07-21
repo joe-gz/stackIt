@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import TextField from 'material-ui/TextField';
 
 class QuestionSearch extends Component {
 
@@ -25,10 +26,13 @@ class QuestionSearch extends Component {
   }
 
   render() {
+    // <input className='search-form-input' type='text' placeholder='Question' value={this.state.value} onChange={this.handleInputChange} onKeyPress={this.handleKeyPress} />
 
     return (
       <div className={`question-search-container ${this.props.visible ? '' : 'hidden'}`}>
-        <input className='search-form-input' type='text' placeholder='Question' value={this.state.value} onChange={this.handleInputChange} onKeyPress={this.handleKeyPress} />
+        <div className='question-input-field-wrap'>
+          <TextField hintText='Question' floatingLabelText='Find by Question' value={this.state.value} onChange={this.handleInputChange} onKeyPress={this.handleKeyPress}/>
+        </div>
         <div className='search-submit-wrap'>
           <div className='search-link' onClick={this.runQuery}>
             {
