@@ -1,0 +1,96 @@
+.question-search-container
+  display: flex
+  align-items: center
+  justify-content: center
+
+.search-header-container
+  display: flex
+  border-left: 1px solid #e6e6e6
+  width: 40em
+  margin: 0 auto
+
+.search-tab
+  position: relative
+  display: flex
+  flex: 1
+  justify-content: center
+  align-items: center
+  text-align: center
+  background-color: #F7F7F7
+  border: 1px solid #e6e6e6
+  border-left: none
+  height: 60px
+  font-size: 14px
+  cursor: pointer
+
+.selected-search
+  background: #fff
+
+.selected-search::after
+  content: ""
+  position: absolute
+  display: block
+  bottom: 0
+  left: 0
+  width: 100%
+  height: 4px
+  background: rgba(151, 189, 61, 0.5)
+
+.search-form-input
+  // font-family: $textFont
+  // max-width: 85%
+  // width: 15em
+  // border-radius: 0.5em
+  // margin-top: 1%
+  // margin-bottom: 1%
+  // border: none
+  // font-size: 1.15em
+  // padding: 0.5em 0.25em
+  // font-size: 1em
+  // width: 10em
+  // margin: 0.5em 0.2em
+  // padding: 0.75em
+  // background: #42505d
+  // opacity: 0.67
+  // transition: all ease 0.33s
+  //
+  // &:focus
+  //   background: fade-out(rgba(0, 0, 0, 0.33), 0.25)
+  color: black
+  display: block
+  width: 100%
+  font-size: 1em
+  padding: .75em
+  width: 21em
+  margin: 1em 0
+  background: hsla(0,0%,100%,.75)
+  border-style: solid
+  border-color: rgba(254,95,85,.75)
+  border-width: 0 0 .115em
+  box-shadow: 0 2px 1px rgba(0,0,0,.1)
+
+.search-form-input::placeholder
+  color: $medFontColor
+
+
+.search-link
+  font-family: $textFont
+  font-size: 1.15em
+  border: none
+  background: $colorPrimary
+  color: $lightFontColor
+  padding: 0.5em
+  margin: 0.67em auto
+  display: block
+  text-decoration: none
+  transition: background ease 0.33s
+  border-radius: 0.5em
+  width: 5em
+  cursor: pointer
+
+.search-link:hover
+  background: darken($colorPrimary,5%)
+  color: $colorWhite
+
+.search-submit-wrap
+  display: inline-block
