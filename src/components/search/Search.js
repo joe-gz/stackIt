@@ -2,13 +2,16 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import {searchOptions} from '../../config';
 import QuestionSearch from './QuestionSearch';
+import TagSearch from './TagSearch';
 
 class Search extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      selectedSearch: searchOptions[0].id
+      selectedSearch: searchOptions[0].id,
+      results: '',
+      isLoading: false
     }
   }
 
@@ -20,12 +23,20 @@ class Search extends Component {
     this.setState({selectedSearch: evt.target.id})
   }
 
+  changeLoading = () => {
+    this.setState({isLoading: true});
+  }
+
   searchQuestions = (question) => {
     const apiLink = 'https://api.stackexchange.com/2.2/search?order=desc&sort=activity&intitle=' + question + '&site=stackoverflow';
     // const apiLink = 'https://api.stackexchange.com/2.2/search?order=desc&sort=activity&intitle=css%20nav%20bar%20does%20not%20extend%20t&site=stackoverflow';
     axios.get(apiLink)
     .then(res => {
       console.log(res);
+      this.setState({
+        results: 'done',
+        isLoading: false
+      });
     }).catch(function (error) {
       console.log(error);
     });
@@ -62,7 +73,8 @@ class Search extends Component {
         <div className='search-header-container'>
           {searchHeaders}
         </div>
-        <QuestionSearch visible={this.state.selectedSearch === 'searchQuestions'} searchQuestions={this.searchQuestions} />
+        <QuestionSearch visible={this.state.selectedSearch === 'searchQuestions'} searchQuestions={this.searchQuestions} isLoading={this.state.isLoading} changeLoading={this.changeLoading} />
+        <TagSearch visible={this.state.selectedSearch === 'searchQuestionsTag'} searchTags={this.searchTags} isLoading={this.state.isLoading} changeLoading={this.changeLoading}/>
       </div>
     );
   }
