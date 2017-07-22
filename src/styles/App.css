@@ -143,6 +143,7 @@ body {
 
 .question-answer-wrap, .user-answer-wrap {
   width: 90%;
+  max-width: 50em;
   margin: 0 auto;
   height: auto;
   opacity: 0;
