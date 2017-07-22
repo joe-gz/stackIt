@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Search from './search/Search';
 import SearchHeaders from './search/SearchHeaders';
 import QuestionResponse from './answers/QuestionResponse';
+import Error from './errors/Error'
 import {searchOptions} from '../config';
 
 class App extends Component {
@@ -10,14 +11,23 @@ class App extends Component {
     super(props);
     this.state = {
       response: [],
-      selectedSearch: searchOptions[0].id
+      selectedSearch: searchOptions[0].id,
+      showError: false
     }
   }
 
   setSearchOption = (value) => {
     this.setState({
       selectedSearch: value,
-      response: []
+      response: [],
+      showError: false
+    });
+  }
+
+  showError = () => {
+    this.setState({
+      showError: true,
+      selectedSearch: ''
     });
   }
 
@@ -32,12 +42,13 @@ class App extends Component {
     return (
       <div className='App'>
         <SearchHeaders selectedSearch={this.state.selectedSearch} setSearchOption={this.setSearchOption} />
-        {this.state.response.length === 0 ?
-          <Search visible={this.state.response.length === 0} selectedSearch={this.state.selectedSearch} setResponseData={this.setResponseData}/> : null
+        {this.state.showError ? null :
+          <Search showError={this.showError} visible={this.state.response.length === 0} selectedSearch={this.state.selectedSearch} setResponseData={this.setResponseData}/>
         }
-        {this.state.response.length > 0 ?
-          <QuestionResponse visible={this.state.response.length > 0} data={this.state.response} /> : null
+        {this.state.showError ? null :
+          <QuestionResponse visible={this.state.response.length > 0} data={this.state.response} />
         }
+        <Error showError={this.state.showError} />
       </div>
     );
   }

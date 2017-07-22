@@ -1,3 +1,13 @@
+.Search
+  opacity: 1
+  transform: translateX(0)
+  transition: opacity .33s ease-in, transform .25s ease-in
+
+.Search.remove-search
+  transition: opacity .33s ease-in, transform .25s ease-in
+  transform: translateX(100%)
+  opacity: 0
+
 .question-search-container
   display: flex
   align-items: center
@@ -94,3 +104,5 @@
 
 .search-submit-wrap
   display: inline-block
+  button
+    background-color: $colorPrimary !important

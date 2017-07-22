@@ -1,15 +1,16 @@
 .question-answer-wrap
   width: 90%
   margin: 0 auto
-  height: calc(100% - 4em)
+  height: auto
+  opacity: 0
+  transform: translateY(-200%)
+  transition: opacity .33s ease-in, transform .25s ease-in
   // overflow: auto
 
 .question-answer-wrap td
   white-space: normal !important
 
 // .contact-form-container
-//   // width: 50%
-//   // margin-left: 50%
 //   padding: 1em
 //   opacity: 0
 //   transform: translateY(-100%)
@@ -21,8 +22,8 @@
 //   top: 6em
 //   right: 10%
 //   width: 26em
-//
-// .contact-form-container.open-form
-//   transition: opacity .33s ease-in, transform .25s ease-in
-//   transform: translateY(0%)
-//   opacity: 1
+
+.question-answer-wrap.showing-answer
+  transition: opacity .33s ease-in, transform .25s ease-in
+  transform: translateY(0%)
+  opacity: 1

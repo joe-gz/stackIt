@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 
 class QuestionSearch extends Component {
@@ -26,6 +27,10 @@ class QuestionSearch extends Component {
   }
 
   render() {
+
+    const style = {
+      margin: 12
+    };
     // <input className='search-form-input' type='text' placeholder='Question' value={this.state.value} onChange={this.handleInputChange} onKeyPress={this.handleKeyPress} />
 
     return (
@@ -34,13 +39,8 @@ class QuestionSearch extends Component {
           <TextField hintText='Question' floatingLabelText='Find by Question' value={this.state.value} onChange={this.handleInputChange} onKeyPress={this.handleKeyPress}/>
         </div>
         <div className='search-submit-wrap'>
-          <div className='search-link' onClick={this.runQuery}>
-            {
-              this.props.isLoading ?
-              'Loading':
-              'Search'
-            }
-          </div>
+          <RaisedButton label={
+            this.props.isLoading ? 'Loading' : 'Search'} primary={true} style={style} onTouchTap={this.runQuery} />
         </div>
       </div>
     );

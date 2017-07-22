@@ -12,7 +12,7 @@ class QuestionResponse extends Component {
 
   createTableRows = (row) => {
     return (
-      <TableRow>
+      <TableRow key={row.link}>
         <TableRowColumn><a href={row.link} target='_blank'>{row.title}</a></TableRowColumn>
         <TableRowColumn>{row.answer_count}</TableRowColumn>
         <TableRowColumn>here, are, some, tags</TableRowColumn>
@@ -24,10 +24,10 @@ class QuestionResponse extends Component {
 
     console.log(this);
     const tableRows = this.props.data.map(this.createTableRows);
-    const height = window.innerHeight - (8 * 16);
+    const height = window.innerHeight - (8 * 16) + 'px';
 
     return (
-      <div className='question-answer-wrap'>
+      <div className={`question-answer-wrap ${this.props.visible ? 'showing-answer' : ''}`}>
         <Table
           fixedHeader={true}
           height={height}

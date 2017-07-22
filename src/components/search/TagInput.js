@@ -8,9 +8,9 @@ class TagInput extends Component {
     return (
       <div>
         <div className='question-input-field-wrap'>
-          <TextField hintText='Question' floatingLabelText='Add tag' value={this.props.value} onChange={(evt) => {
+          <TextField hintText='Tag' floatingLabelText='Add tag' value={this.props.value} onKeyPress={this.props.handleKeyPress} onChange={(evt) => {
             this.props.handleInputChange(evt, this.props.indexValue)
-          }} onKeyPress={this.props.handleKeyPress}/>
+          }}/>
         </div>
       </div>
     );

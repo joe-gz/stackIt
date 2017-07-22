@@ -15,12 +15,6 @@ class Search extends Component {
     }
   }
 
-  createHeaders = (header) => {
-    return <div id={header.id} onClick={this.selectOption} className={`search-tab ${header.className} ${this.props.selectedSearch === header.id ? 'selected-search' : ''}`} key={header.id}>
-      <div className='header-text'>{header.text}</div>
-    </div>
-  }
-
   selectOption = (evt) => {
     this.setState({selectedSearch: evt.target.id})
   }
@@ -35,13 +29,18 @@ class Search extends Component {
     axios.get(apiLink)
     .then(res => {
       console.log(res);
-      this.setState({
-        results: 'done',
-        isLoading: false
-      });
-      this.props.setResponseData(res.data.items);
+      if (res.data.items.length > 0) {
+        this.setState({
+          results: 'done',
+          isLoading: false
+        });
+        this.props.setResponseData(res.data.items);
+      } else {
+        this.props.showError();
+      }
     }).catch(function (error) {
       console.log(error);
+      this.props.showError();
     });
   }
 
@@ -62,15 +61,25 @@ class Search extends Component {
     axios.get(apiLink)
     .then(res => {
       console.log(res);
+      if (res.data.items.length > 0) {
+        this.setState({
+          results: 'done',
+          isLoading: false
+        });
+        this.props.setResponseData(res.data.items);
+      } else {
+        this.props.showError();
+      }
     }).catch(function (error) {
       console.log(error);
+      this.props.showError();
     });
   }
 
   render() {
 
     return (
-      <div className='Search'>
+      <div className={`Search ${this.props.visible ? '' : 'remove-search'}`}>
         <QuestionSearch visible={this.props.selectedSearch === 'searchQuestions'} searchQuestions={this.searchQuestions} isLoading={this.state.isLoading} changeLoading={this.changeLoading} />
         <TagSearch visible={this.props.selectedSearch === 'searchQuestionsTag'} searchTags={this.searchTags} isLoading={this.state.isLoading} changeLoading={this.changeLoading}/>
       </div>

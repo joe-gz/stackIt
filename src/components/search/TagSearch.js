@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import TagInput from './TagInput';
+import RaisedButton from 'material-ui/RaisedButton';
 
 class QuestionSearch extends Component {
 
@@ -41,19 +42,26 @@ class QuestionSearch extends Component {
 
   render() {
 
+    // <div className='search-link' onClick={this.runQuery}>
+    //   {
+    //     this.props.isLoading ?
+    //     'Loading':
+    //     'Search'
+    //   }
+    // </div>
+
     const tagInputs = this.state.values.map(this.createInputs)
+
+    const style = {
+      margin: 12
+    };
 
     return (
       <div className={`tag-search-container ${this.props.visible ? '' : 'hidden'}`}>
         {tagInputs}
         <div className='search-submit-wrap'>
-          <div className='search-link' onClick={this.runQuery}>
-            {
-              this.props.isLoading ?
-              'Loading':
-              'Search'
-            }
-          </div>
+          <RaisedButton label={
+            this.props.isLoading ? 'Loading' : 'Search'} primary={true} style={style} onTouchTap={this.runQuery} />
         </div>
       </div>
     );
