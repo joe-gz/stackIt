@@ -14,7 +14,7 @@ class SingleUser extends Component {
       <div className={`single-user-wrap ${className}`}>
         <div className='user-name'>{this.props.data.display_name}</div>
         <div style={style} className='user-profile-image'></div>
-        <div className='user-reputation'>{this.props.data.reputation} Reputation</div>
+        <div className='user-reputation'>{this.props.data.reputation.toLocaleString()} Reputation</div>
       </div>
     );
   }

@@ -32,11 +32,11 @@ class UserResponse extends Component {
 
     return (
       <div className={`user-answer-wrap ${this.props.visible ? 'showing-answer' : ''}`}>
-        <div className={`${this.state.visibleUser === this.props.data.length - 1 ? 'hidden' : ''}`} onClick={this.incrementUser}>Next</div>
-        <div className={`${this.state.visibleUser === 0 ? 'hidden' : ''}`} onClick={this.decrementUser}>Previous</div>
         <div className='user-array-wrap'>
           {userArray}
         </div>
+        <div className={`switch-buttons prev-button ${this.state.visibleUser === 0 ? 'hidden' : ''}`} onClick={this.decrementUser}></div>
+        <div className={`switch-buttons next-button ${this.state.visibleUser === this.props.data.length - 1 ? 'hidden' : ''}`} onClick={this.incrementUser}></div>
       </div>
     );
   }
