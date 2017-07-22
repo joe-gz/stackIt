@@ -11,11 +11,12 @@ import {
 class QuestionResponse extends Component {
 
   createTableRows = (row) => {
+    let tagString = row.tags.join(', ');
     return (
       <TableRow key={row.link}>
         <TableRowColumn><a href={row.link} target='_blank'>{row.title}</a></TableRowColumn>
         <TableRowColumn>{row.answer_count}</TableRowColumn>
-        <TableRowColumn>here, are, some, tags</TableRowColumn>
+        <TableRowColumn>{tagString}</TableRowColumn>
       </TableRow>
     );
   }
