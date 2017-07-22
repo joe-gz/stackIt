@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import {searchOptions} from '../../config';
-import QuestionSearch from './QuestionSearch';
+import SingleSearch from './SingleSearch';
 import TagSearch from './TagSearch';
 
 class Search extends Component {
@@ -45,13 +45,22 @@ class Search extends Component {
   }
 
   searchUsers = (userName) => {
-    // const apiLink = 'https://api.stackexchange.com/2.2/search?order=desc&sort=activity&intitle=' + userName + '&site=stackoverflow';
-    const apiLink = 'https://api.stackexchange.com/docs/users#order=desc&sort=reputation&inname=' + userName + '&filter=default&site=stackoverflow&run=true';
+    const apiLink = 'https://api.stackexchange.com/2.2/users?order=desc&sort=reputation&inname=' + userName + '&site=stackoverflow'
     axios.get(apiLink)
     .then(res => {
       console.log(res);
+      if (res.data.items.length > 0) {
+        this.setState({
+          results: 'done',
+          isLoading: false
+        });
+        this.props.setUserResponseData(res.data.items);
+      } else {
+        this.props.showError();
+      }
     }).catch(function (error) {
       console.log(error);
+      this.props.showError();
     });
   }
 
@@ -80,8 +89,9 @@ class Search extends Component {
 
     return (
       <div className={`Search ${this.props.visible ? '' : 'remove-search'}`}>
-        <QuestionSearch visible={this.props.selectedSearch === 'searchQuestions'} searchQuestions={this.searchQuestions} isLoading={this.state.isLoading} changeLoading={this.changeLoading} />
+        <SingleSearch visible={this.props.selectedSearch === 'searchQuestions'} search={this.searchQuestions} isLoading={this.state.isLoading} changeLoading={this.changeLoading} placeholder='Find by Question' />
         <TagSearch visible={this.props.selectedSearch === 'searchQuestionsTag'} searchTags={this.searchTags} isLoading={this.state.isLoading} changeLoading={this.changeLoading}/>
+        <SingleSearch visible={this.props.selectedSearch === 'searchUsers'} search={this.searchUsers} isLoading={this.state.isLoading} changeLoading={this.changeLoading} placeholder='Find User'/>
       </div>
     );
   }

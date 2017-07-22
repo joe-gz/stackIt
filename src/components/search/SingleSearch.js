@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 
-class QuestionSearch extends Component {
+class SingleSearch extends Component {
 
   constructor(props) {
     super(props);
@@ -23,7 +23,7 @@ class QuestionSearch extends Component {
 
   runQuery = () => {
     this.props.changeLoading();
-    this.props.searchQuestions(this.state.value);
+    this.props.search(this.state.value);
   }
 
   render() {
@@ -36,7 +36,7 @@ class QuestionSearch extends Component {
     return (
       <div className={`question-search-container ${this.props.visible ? '' : 'hidden'}`}>
         <div className='question-input-field-wrap'>
-          <TextField hintText='Question' floatingLabelText='Find by Question' value={this.state.value} onChange={this.handleInputChange} onKeyPress={this.handleKeyPress}/>
+          <TextField hintText='Search' floatingLabelText={this.props.placeholder} value={this.state.value} onChange={this.handleInputChange} onKeyPress={this.handleKeyPress}/>
         </div>
         <div className='search-submit-wrap'>
           <RaisedButton label={
@@ -47,4 +47,4 @@ class QuestionSearch extends Component {
   }
 }
 
-export default QuestionSearch;
+export default SingleSearch;

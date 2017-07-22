@@ -22,7 +22,6 @@ class QuestionResponse extends Component {
 
   render() {
 
-    console.log(this);
     const tableRows = this.props.data.map(this.createTableRows);
     const height = window.innerHeight - (8 * 16) + 'px';
 
