@@ -96,7 +96,7 @@ body {
   font-family: "Varela Round", sans-serif;
   font-size: 1.15em;
   border: none;
-  background: #63a313;
+  background: #6aad45;
   color: #E5E5E5;
   padding: 0.5em;
   margin: 0.67em auto;
@@ -108,13 +108,13 @@ body {
   cursor: pointer; }
 
 .search-link:hover {
-  background: #558c10;
+  background: #5f9b3e;
   color: white; }
 
 .search-submit-wrap {
   display: inline-block; }
   .search-submit-wrap button {
-    background-color: #63a313 !important; }
+    background-color: #6aad45 !important; }
 
 @media only screen and (max-width: 768px) {
   .search-header-container {
@@ -222,3 +222,6 @@ body {
 
 .prev-button {
   background-image: url("./../images/back.svg"); }
+
+tr:first-child {
+  width: 50% !important; }

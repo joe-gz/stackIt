@@ -14,9 +14,9 @@ class QuestionResponse extends Component {
     let tagString = row.tags.join(', ');
     return (
       <TableRow key={row.link}>
-        <TableRowColumn><a href={row.link} target='_blank'>{row.title}</a></TableRowColumn>
-        <TableRowColumn>{row.answer_count}</TableRowColumn>
-        <TableRowColumn>{tagString}</TableRowColumn>
+        <TableRowColumn style={{width: '40%'}}><a href={row.link} target='_blank'>{row.title}</a></TableRowColumn>
+        <TableRowColumn style={{width: '25%'}}>{row.answer_count}</TableRowColumn>
+        <TableRowColumn style={{width: '35%'}}>{tagString}</TableRowColumn>
       </TableRow>
     );
   }
@@ -38,9 +38,9 @@ class QuestionResponse extends Component {
             enableSelectAll={false}
           >
             <TableRow>
-              <TableHeaderColumn>Title</TableHeaderColumn>
-              <TableHeaderColumn>Answers</TableHeaderColumn>
-              <TableHeaderColumn>Tags</TableHeaderColumn>
+              <TableHeaderColumn style={{width: '40%'}}>Title</TableHeaderColumn>
+              <TableHeaderColumn style={{width: '25%'}}>Answers</TableHeaderColumn>
+              <TableHeaderColumn style={{width: '35%'}}>Tags</TableHeaderColumn>
             </TableRow>
           </TableHeader>
           <TableBody
