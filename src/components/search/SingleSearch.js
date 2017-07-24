@@ -40,7 +40,7 @@ class SingleSearch extends Component {
         </div>
         <div className='search-submit-wrap'>
           <RaisedButton label={
-            this.props.isLoading ? 'Loading' : 'Search'} primary={true} style={style} onTouchTap={this.runQuery} />
+            this.props.isLoading ? 'Loading...' : 'Search'} primary={true} style={style} onTouchTap={this.runQuery} />
         </div>
       </div>
     );

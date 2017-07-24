@@ -1,11 +1,13 @@
 .question-answer-wrap, .user-answer-wrap
   width: 90%
-  max-width: 50em
   margin: 0 auto
   height: auto
   opacity: 0
   transform: translateY(-200%)
   transition: opacity .33s ease-in, transform .25s ease-in
+
+.question-answer-wrap
+  max-width: 50em
   // overflow: auto
 
 .user-answer-wrap
@@ -34,7 +36,7 @@
 
 .right-align
   transition: opacity .33s ease-in, transform .25s ease-in
-  transform: translateX(100%)
+  transform: translateX(150%)
   opacity: 0
 
 .visible-user
@@ -48,7 +50,7 @@
   background-size: contain
   background-repeat: no-repeat
   background-position: center
-  margin: 0 auto
+  margin: 1em auto 0.5em
   border-radius: 50%
 
 .user-array-wrap
@@ -83,3 +85,6 @@
 
 tr:first-child
   width: 50% !important
+
+table tr:nth-child(even)
+  background-color: #f9f9f9

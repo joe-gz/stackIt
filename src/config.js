@@ -5,7 +5,7 @@ export const searchOptions = [
     className: 'search-questions'
   },
   {
-    text: 'Search Questions by Tag',
+    text: 'Search by Tag',
     id: 'searchQuestionsTag',
     className: 'search-tag-input'
   },

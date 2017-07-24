@@ -37,7 +37,7 @@ class QuestionSearch extends Component {
   }
 
   createInputs = (value, index) => {
-    return <TagInput key={index} indexValue={index} handleKeyPress={this.handleKeyPress} handleInputChange={this.handleInputChange} />
+    return <TagInput key={index} value={this.state.values[index]} indexValue={index} handleKeyPress={this.handleKeyPress} handleInputChange={this.handleInputChange} />
   }
 
   render() {
@@ -61,7 +61,7 @@ class QuestionSearch extends Component {
         {tagInputs}
         <div className='search-submit-wrap'>
           <RaisedButton label={
-            this.props.isLoading ? 'Loading' : 'Search'} primary={true} style={style} onTouchTap={this.runQuery} />
+            this.props.isLoading ? 'Loading...' : 'Search'} primary={true} style={style} onTouchTap={this.runQuery} />
         </div>
       </div>
     );

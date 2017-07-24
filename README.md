@@ -1,5 +1,9 @@
 # Learning Objects Code Challenge
 
+https://s3.amazonaws.com/lo-challenge/index.html
+
+*Includes usability on mobile*
+
 ## Installation
 * `npm install`
 * `npm start`

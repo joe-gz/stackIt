@@ -45,7 +45,7 @@ body {
 .search-header-container {
   display: flex;
   border-left: 1px solid #e6e6e6;
-  width: 40em;
+  width: 50em;
   margin: 0 auto; }
 
 .search-tab {
@@ -59,7 +59,7 @@ body {
   border: 1px solid #e6e6e6;
   border-left: none;
   height: 4em;
-  font-size: 1em;
+  font-size: 14px;
   cursor: pointer; }
 
 .selected-search {
@@ -116,6 +116,20 @@ body {
   .search-submit-wrap button {
     background-color: #6aad45 !important; }
 
+.search-tab {
+  background-size: 2em;
+  background-repeat: no-repeat;
+  background-position: left 10px center; }
+
+.search-questions {
+  background-image: url(../images/question.svg); }
+
+.search-tag-input {
+  background-image: url(../images/tags.svg); }
+
+.search-users {
+  background-image: url(../images/users.svg); }
+
 @media only screen and (max-width: 768px) {
   .search-header-container {
     width: 100%;
@@ -127,12 +141,6 @@ body {
     background-size: 3em;
     background-repeat: no-repeat;
     background-position: center; }
-  .search-questions {
-    background-image: url(../images/question.svg); }
-  .search-tag-input {
-    background-image: url(../images/tags.svg); }
-  .search-users {
-    background-image: url(../images/users.svg); }
   .question-search-container {
     display: block; }
   .question-answer-wrap {
@@ -143,12 +151,14 @@ body {
 
 .question-answer-wrap, .user-answer-wrap {
   width: 90%;
-  max-width: 50em;
   margin: 0 auto;
   height: auto;
   opacity: 0;
   transform: translateY(-200%);
   transition: opacity .33s ease-in, transform .25s ease-in; }
+
+.question-answer-wrap {
+  max-width: 50em; }
 
 .user-answer-wrap {
   height: 100%; }
@@ -176,7 +186,7 @@ body {
 
 .right-align {
   transition: opacity .33s ease-in, transform .25s ease-in;
-  transform: translateX(100%);
+  transform: translateX(150%);
   opacity: 0; }
 
 .visible-user {
@@ -190,7 +200,7 @@ body {
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-  margin: 0 auto;
+  margin: 1em auto 0.5em;
   border-radius: 50%; }
 
 .user-array-wrap {
@@ -225,3 +235,6 @@ body {
 
 tr:first-child {
   width: 50% !important; }
+
+table tr:nth-child(even) {
+  background-color: #f9f9f9; }
