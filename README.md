@@ -1,6 +1,4 @@
-# Learning Objects Code Challenge
-
-https://s3.amazonaws.com/lo-challenge/index.html
+# Social Tables Code Sample
 
 *Includes usability on mobile*
 
