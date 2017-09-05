@@ -38,7 +38,7 @@ class Search extends Component {
       } else {
         this.props.showError();
       }
-    }).catch(function (error) {
+    }).catch((error) => {
       console.log(error);
       this.props.showError();
     });
@@ -91,7 +91,6 @@ class Search extends Component {
       <div className={`Search ${this.props.visible ? '' : 'remove-search'}`}>
         <SingleSearch visible={this.props.selectedSearch === 'searchQuestions'} search={this.searchQuestions} isLoading={this.state.isLoading} changeLoading={this.changeLoading} placeholder='Find by Question' />
         <TagSearch visible={this.props.selectedSearch === 'searchQuestionsTag'} searchTags={this.searchTags} isLoading={this.state.isLoading} changeLoading={this.changeLoading}/>
-        <SingleSearch visible={this.props.selectedSearch === 'searchUsers'} search={this.searchUsers} isLoading={this.state.isLoading} changeLoading={this.changeLoading} placeholder='Find User'/>
       </div>
     );
   }

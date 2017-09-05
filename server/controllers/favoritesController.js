@@ -69,8 +69,11 @@ favoritesController.createFavorite = function (req, res) {
   const authenticated = Authenticate.authenticatedUser(req, userId)
   if (authenticated) {
     FavoriteModel.create({
-      text: req.body.data.text,
-      value: req.body.data.value,
+      question_id: req.body.data.question_id,
+      title: req.body.data.title,
+      link: req.body.data.link,
+      answer_count: req.body.data.answer_count,
+      tags: req.body.data.tags,
       userId: req.session.user.id
     }).then(favorite => {
       res.json(favorite)
@@ -103,33 +106,8 @@ favoritesController.deleteFavorite = function (req, res) {
   }
 }
 
-favoritesController.updateFavorite = function (req, res) {
-  console.log('REQ BODY 85', req.body);
-  console.log('REQ BODY TEXT 86', req.body.data.text);
-  const userId = req.params.userId;
-  const authenticated = Authenticate.authenticatedUser(req, userId)
-  if (authenticated) {
-    FavoriteModel.update({
-      text: req.body.data.text
-    }, {
-      where: {
-        id: req.params.id,
-        userId: userId
-      }
-    }).then(favorite => {
-      console.log('RESPONSE 94', favorite);
-      res.json({
-        text: favorite
-      })
-    }).catch(err => {
-      console.log('Could not update!', err);
-    });
-  } else {
-    res.json({error: 'Not logged in!'});
-  }
-}
-
 favoritesController.getUserInfo = function (req, res) {
+  console.log(req.session.user);
   if (req.session.user) {
     FavoriteModel.findAll({
       where: {

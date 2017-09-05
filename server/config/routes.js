@@ -9,7 +9,6 @@ router.get('/favorites/:userId', favoritesController.getFavorites);
 router.get('/favorite/:id', favoritesController.getFavorite);
 router.post('/create/:userId', favoritesController.createFavorite);
 router.delete('/delete/:id/:userId', favoritesController.deleteFavorite);
-router.put('/update/:id/:userId', favoritesController.updateFavorite);
 router.get('/get-user', favoritesController.getUserInfo);
 
 // users:

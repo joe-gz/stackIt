@@ -1,3 +1,8 @@
+export const initialState = {
+  currentUser: {},
+  favorites: []
+}
+
 export const searchOptions = [
   {
     text: 'Search Questions',
@@ -10,8 +15,8 @@ export const searchOptions = [
     className: 'search-tag-input'
   },
   {
-    text: 'Search Users',
-    id: 'searchUsers',
-    className: 'search-users'
+    text: 'Favorites',
+    id: 'user-favorites',
+    className: 'user-favorites'
   }
 ]

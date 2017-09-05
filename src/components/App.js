@@ -1,67 +1,67 @@
 import React, { Component } from 'react';
-import Search from './search/Search';
-import SearchHeaders from './search/SearchHeaders';
-import QuestionResponse from './answers/QuestionResponse';
-import UserResponse from './answers/UserResponse';
-import Error from './errors/Error';
-import {searchOptions} from '../config';
+import { Switch, Route } from 'react-router-dom';
+import axios from 'axios';
+import Login from './login/Login';
+import Home from './home/Home';
+import NotFound from './errors/NotFound';
+import store from '../store';
+import {setCurrentUser} from '../actions/actions';
 
 class App extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      response: [],
-      userResponse: [],
-      selectedSearch: searchOptions[0].id,
-      showError: false
+      ...store.getState()
+    };
+  }
+
+  unsubscribe: () => void;
+
+  componentDidMount() {
+    console.log(this);
+    this.unsubscribe = store.subscribe(this.storeDidUpdate);
+    if (!this.state.currentUser.id) {
+      console.log('no user!');
+      this.fetchUserInfo();
     }
   }
 
-  setSearchOption = (value) => {
-    this.setState({
-      selectedSearch: value,
-      response: [],
-      userResponse: [],
-      showError: false
-    });
+  componentWillUnmount() {
+    this.unsubscribe();
   }
 
-  showError = () => {
-    this.setState({
-      showError: true,
-      selectedSearch: ''
-    });
-  }
+  storeDidUpdate:Function = () => {
+    this.setState(store.getState());
+  };
 
-  setResponseData =  (response) => {
-    this.setState({
-      response: response,
-      selectedSearch: ''
-    });
-  }
-
-  setUserResponseData =  (response) => {
-    this.setState({
-      userResponse: response,
-      selectedSearch: ''
+  fetchUserInfo = () => {
+    console.log('fetch user?');
+    axios.get('/get-user')
+    .then((response) => {
+      if (response.data && response.data !== '') {
+        store.dispatch(setCurrentUser(response.data.user));
+      }
+      //  else {
+      //   this.props.history.push('/');
+      // }
+    })
+    .catch((error) => {
+      console.log(error);
+      // this.props.history.push('/');
     });
   }
 
   render() {
     return (
-      <div className='App'>
-        <SearchHeaders selectedSearch={this.state.selectedSearch} setSearchOption={this.setSearchOption} />
-        {this.state.showError ? null :
-          <Search showError={this.showError} visible={this.state.response.length === 0} selectedSearch={this.state.selectedSearch} setUserResponseData={this.setUserResponseData} setResponseData={this.setResponseData}/>
-        }
-        {this.state.showError ? null :
-          <QuestionResponse visible={this.state.response.length > 0} data={this.state.response} />
-        }
-        {this.state.showError ? null :
-          <UserResponse visible={this.state.userResponse.length > 0} data={this.state.userResponse} />
-        }
-        <Error showError={this.state.showError} />
+      <div className="App">
+        <Switch>
+          <Route exact path='/' component={Login}/>
+          {this.state.currentUser.id ?
+            <Route path='/home' component={Home}/> : null
+          }
+          <Route path='*' component={Login}/>
+        </Switch>
       </div>
     );
   }

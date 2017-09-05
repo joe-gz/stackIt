@@ -130,6 +130,9 @@ body {
 .search-users {
   background-image: url(../images/users.svg); }
 
+.user-favorites {
+  background-image: url(../images/favorite.svg); }
+
 @media only screen and (max-width: 768px) {
   .search-header-container {
     width: 100%;
@@ -145,11 +148,14 @@ body {
     display: block; }
   .question-answer-wrap {
     height: calc(100% - 4em) !important; }
-  .user-answer-wrap.showing-answer {
+  .favorite-wrap.showing-answer {
+    top: 0 !important;
+    height: calc(100% - 4em) !important; }
+  .favorite-wrap.showing-answer {
     top: 0 !important;
     height: calc(100% - 4em) !important; } }
 
-.question-answer-wrap, .user-answer-wrap {
+.question-answer-wrap, .favorite-wrap {
   width: 90%;
   margin: 0 auto;
   height: auto;
@@ -160,22 +166,22 @@ body {
 .question-answer-wrap {
   max-width: 50em; }
 
-.user-answer-wrap {
+.favorite-wrap {
   height: 100%; }
 
 .question-answer-wrap td {
   white-space: normal !important; }
 
-.user-answer-wrap {
+.favorite-wrap {
   position: absolute;
   top: 0em; }
 
-.question-answer-wrap.showing-answer, .user-answer-wrap.showing-answer {
+.question-answer-wrap.showing-answer, .favorite-wrap.showing-answer {
   transition: opacity .33s ease-in, transform .25s ease-in;
   transform: translateY(0%);
   opacity: 1; }
 
-.user-answer-wrap.showing-answer {
+.favorite-wrap.showing-answer {
   top: 5em;
   width: 100%; }
 
@@ -238,3 +244,19 @@ tr:first-child {
 
 table tr:nth-child(even) {
   background-color: #f9f9f9; }
+
+th, td {
+  padding-left: 5px !important;
+  padding-right: 5px !important; }
+
+.favorite {
+  background-image: url("./../images/favorite.svg"); }
+
+.no-favorite {
+  background-image: url("./../images/star.svg"); }
+
+.favorite, .no-favorite {
+  height: 100%;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center; }

@@ -11,7 +11,7 @@ import {
   TableRowColumn,
 } from 'material-ui/Table';
 
-class QuestionResponse extends Component {
+class UserFavorites extends Component {
 
   constructor(props) {
     super(props);
@@ -47,71 +47,41 @@ class QuestionResponse extends Component {
     });
   }
 
-  toggleFavorite = (evt) => {
-    console.log(evt.target.id);
-    const selectedRow = this.props.data[evt.target.id]
+  removeFavorite = (evt) => {
     let favoriteId;
     let favoriteIndex;
     if (this.state.favorites.length > 0) {
       this.state.favorites.forEach((favorite, i) => {
         console.log(favorite);
-        if (favorite.question_id === parseInt(selectedRow.question_id)) {
+        if (favorite.question_id === parseInt(evt.target.id)) {
           favoriteId = favorite.id;
           favoriteIndex = i;
         }
       });
     }
-    console.log(favoriteId);
-    if (!favoriteId) {
-      const bigObj = {
-        question_id: selectedRow.question_id,
-        link: selectedRow.link,
-        title: selectedRow.title,
-        answer_count: selectedRow.answer_count,
-        tags: selectedRow.tags
-      };
-
-      axios.post(`/create/${this.state.currentUser.id}`, {
-        data: bigObj
-      })
-      .then((response) => {
-        console.log('completed');
-        console.log(response);
-        console.log(this.state.favorites);
-        if (this.state.favorites.length > 0) {
-          const favorites = this.state.favorites.slice();
-          favorites.push(response.data);
-          store.dispatch(setFavorites(favorites));
-        } else {
-          store.dispatch(setFavorites([response.data]));
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-    } else {
-      axios.delete(`/delete/${favoriteId}/${this.state.currentUser.id}`)
-      .then((response) => {
-        console.log('completed');
-        console.log(response);
-        if (this.state.favorites.length > 1) {
-          const favorites = this.state.favorites.slice();
-          favorites.splice(favoriteIndex, 1);
-          store.dispatch(setFavorites(favorites));
-        } else {
-          store.dispatch(setFavorites([]));
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-    }
+    axios.delete(`/delete/${favoriteId}/${this.state.currentUser.id}`)
+    .then((response) => {
+      console.log('completed');
+      console.log(response);
+      if (this.state.favorites.length > 1) {
+        const favorites = this.state.favorites.slice();
+        favorites.splice(favoriteIndex, 1);
+        store.dispatch(setFavorites(favorites));
+      } else {
+        store.dispatch(setFavorites([]));
+      }
+    })
+    .catch((error) => {
+      console.log(error);
+    });
   }
 
-  createTableRows = (row, index) => {
+  createTableRows = (row) => {
+    console.log(row);
     let favoriteClass = 'no-favorite';
-    let tagString = row.tags.join(', ');
+    let tagString = '';
     if (this.state.favorites.length > 0) {
+      tagString = row.tags.join(', ');
       this.state.favorites.forEach(favorite => {
         if (favorite.question_id === row.question_id) {
           favoriteClass = 'favorite';
@@ -120,7 +90,7 @@ class QuestionResponse extends Component {
     }
     return (
       <TableRow key={row.link}>
-        <TableRowColumn style={{width: '10%'}}><div onClick={this.toggleFavorite} id={index} className={favoriteClass}></div></TableRowColumn>
+        <TableRowColumn style={{width: '10%'}}><div onClick={this.removeFavorite} id={row.question_id} className={favoriteClass}></div></TableRowColumn>
         <TableRowColumn style={{width: '45%'}}><a href={row.link} target='_blank'>{row.title}</a></TableRowColumn>
         <TableRowColumn style={{width: '15%'}}>{row.answer_count}</TableRowColumn>
         <TableRowColumn style={{width: '30%'}}>{tagString}</TableRowColumn>
@@ -129,12 +99,15 @@ class QuestionResponse extends Component {
   }
 
   render() {
-
-    const tableRows = this.props.data.map(this.createTableRows);
+    console.log(this.state.favorites);
+    let tableRows;
+    if (this.state.favorites.length > 0) {
+      tableRows = this.state.favorites.map(this.createTableRows);
+    }
     const height = window.innerHeight - (8 * 16) + 'px';
 
     return (
-      <div className={`question-answer-wrap ${this.props.visible ? 'showing-answer' : ''}`}>
+      <div className={`favorite-wrap ${this.props.visible ? 'showing-answer' : ''}`}>
         <Table
           fixedHeader={true}
           height={height}
@@ -154,7 +127,9 @@ class QuestionResponse extends Component {
           <TableBody
             displayRowCheckbox={false}
           >
-            {tableRows}
+            {this.state.favorites.length > 0 ?
+              tableRows : <div>No favorites!</div>
+            }
           </TableBody>
         </Table>
       </div>
@@ -162,4 +137,4 @@ class QuestionResponse extends Component {
   }
 }
 
-export default QuestionResponse;
+export default UserFavorites;
