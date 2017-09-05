@@ -73,6 +73,7 @@ class Login extends Component {
     return (
       <div className='login-container'>
         <h1>Stackit</h1>
+        <p>A helpful stack overflow search app to save useful questions!</p>
         {!this.state.loginVisible ?
           <div className='Signup'>
             <TextField
