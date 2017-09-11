@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-const sequelize = new Sequelize('postgres:///sequelize_test');
+const sequelize = new Sequelize('postgres:///socialtables_challenge');
 const Favorite = sequelize.import('../models/favorites');
 const User = sequelize.import('../models/user');
 

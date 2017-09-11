@@ -26,6 +26,22 @@ body {
 .hidden {
   display: none !important; }
 
+.login-container {
+  height: 100%;
+  background-color: #7e89b6;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 2em; }
+
+.Login {
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
+  .Login .login__form__input {
+    margin-bottom: 1em !important; }
+
 .Search {
   opacity: 1;
   transform: translateX(0);
@@ -96,7 +112,7 @@ body {
   font-family: "Varela Round", sans-serif;
   font-size: 1.15em;
   border: none;
-  background: #6aad45;
+  background: #4a5684;
   color: #E5E5E5;
   padding: 0.5em;
   margin: 0.67em auto;
@@ -108,13 +124,13 @@ body {
   cursor: pointer; }
 
 .search-link:hover {
-  background: #5f9b3e;
+  background: #414b74;
   color: white; }
 
 .search-submit-wrap {
   display: inline-block; }
   .search-submit-wrap button {
-    background-color: #6aad45 !important; }
+    background-color: #4a5684 !important; }
 
 .search-tab {
   background-size: 2em;
@@ -122,10 +138,10 @@ body {
   background-position: left 10px center; }
 
 .search-questions {
-  background-image: url(../images/question.svg); }
+  background-image: url(../images/question-st.svg); }
 
 .search-tag-input {
-  background-image: url(../images/tags.svg); }
+  background-image: url(../images/tags-st.svg); }
 
 .search-users {
   background-image: url(../images/users.svg); }
@@ -248,6 +264,9 @@ table tr:nth-child(even) {
 th, td {
   padding-left: 5px !important;
   padding-right: 5px !important; }
+
+th {
+  text-align: center !important; }
 
 .favorite {
   background-image: url("./../images/favorite.svg"); }
