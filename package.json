@@ -1,7 +1,7 @@
 {
-  "name": "lo-code-challenge",
+  "name": "socialtables",
   "version": "0.1.0",
-  "homepage": "https://joe-gz.github.io/lo-challenge/",
+  "homepage": "https://joe-gz.github.io/socialtables/",
   "proxy": "http://localhost:3001/",
   "private": true,
   "dependencies": {
