@@ -4,7 +4,7 @@
 
 ## Installation
 * You must have PostgreSQL installed and running on your machine
-* Please create a database called `socialtables`
+* Please create a database called `socialtables_challenge`
   * OR, change the path in `./server/db/connection.js` (line 2) to point to a DB name of your choosing
 * `npm install`
 * `npm start`
