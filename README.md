@@ -1,10 +1,10 @@
-# Social Tables Code Sample
+# StackIt
 
 *Includes usability on mobile*
 
 ## Installation
 * You must have PostgreSQL installed and running on your machine
-* Please create a database called `socialtables_challenge`
+* Please create a database called `stackit`
   * OR, change the path in `./server/db/connection.js` (line 2) to point to a DB name of your choosing
 * `npm install`
 * To work in development, you can open two terminal tabs and run:

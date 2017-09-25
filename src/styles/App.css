@@ -28,12 +28,25 @@ body {
 
 .login-container {
   height: 100%;
-  background-color: #7e89b6;
-  color: white;
+  color: #4a5684;
   display: flex;
   flex-direction: column;
   justify-content: center;
   padding: 0 2em; }
+
+.login-container::after {
+  content: '';
+  background-image: url("../images/stack.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position-y: 15%;
+  opacity: 0.2;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1; }
 
 .Login {
   display: flex;
